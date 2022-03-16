@@ -5,6 +5,6 @@ namespace BurakBlog.Entities.DataTransferObjects
 {
     public class CategoryListDto : DtoGetBase
     {
-        public IList<Category>? Categories { get; set; }
+        public IList<Category> Categories { get; set; }
     }
 }
