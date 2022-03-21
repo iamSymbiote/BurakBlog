@@ -5,9 +5,7 @@
         IArticleRepository Articles { get; } // amacimiz unitofwork.Articles ile ulasabilmek
         ICategoryRepository Categories { get; }
         ICommentRepository Comments { get; }
-        IRoleRepository Roles { get; }
-        IUserRepository Users { get; }
-
+      
         //yani ilerde bunlari cagirirken mesela;
         //    _unitOfWork.Categories.AddAsync(category);
         //    _unitOfWork.Users.AddAsync(user);
