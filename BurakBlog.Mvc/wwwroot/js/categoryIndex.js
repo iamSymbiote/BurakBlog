@@ -41,8 +41,8 @@
                                     <td>${category.Id}</td>
                                     <td>${category.Name}</td>
                                     <td>${category.Description}</td>
-                                    <td>${convertFirstLetterToUpperCase(category.IsActive.toString())}</td>
-                                    <td>${convertFirstLetterToUpperCase(category.IsDeleted.toString())}</td>
+                                    <td>${category.IsActive ? "Evet" : "Hayır"}</td>
+                                    <td>${category.IsDeleted ? "Evet" : "Hayır"}</td>
                                     <td>${category.Note}</td>
                                     <td>${convertToShortDate(category.CreatedDate)}</td>
                                     <td>${category.CreatedByName}</td>
