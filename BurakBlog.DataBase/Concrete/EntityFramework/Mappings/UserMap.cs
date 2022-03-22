@@ -1,4 +1,5 @@
 ﻿using BurakBlog.Entities.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Text;
@@ -44,6 +45,45 @@ namespace BurakBlog.DataBase.Concrete.EntityFramework.Mappings
 
             // Each User can have many entries in the UserRole join table
             builder.HasMany<UserRole>().WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
+
+
+            var adminUser = new User
+            {
+                Id = 1,
+                UserName = "adminuser",
+                NormalizedUserName = "ADMINUSER",
+                Email = "adminuser@gmail.com",
+                NormalizedEmail = "ADMINUSER@GMAIL.COM",
+                PhoneNumber = "+905335256000",
+                Picture = "defaultUser.png",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+
+            };
+            adminUser.PasswordHash = CreatePasswordHash(adminUser, "adminuser");
+            var editorUser = new User
+            {
+                Id = 2,
+                UserName = "editorUser",
+                NormalizedUserName = "EDITORUSER",
+                Email = "editorUser@gmail.com",
+                NormalizedEmail = "EDITORUSER@GMAIL.COM",
+                PhoneNumber = "+905335256000",
+                Picture = "defaultUser.png",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+
+            };
+            editorUser.PasswordHash = CreatePasswordHash(editorUser, "editoruser");
+
+            builder.HasData(adminUser, editorUser);
+        }
+        private string CreatePasswordHash(User user, string password)
+        {
+            var passwordHasher = new PasswordHasher<User>();
+            return passwordHasher.HashPassword(user, password);
         }
     }
 }
